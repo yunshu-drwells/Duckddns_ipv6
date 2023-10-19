@@ -1,0 +1,4 @@
+wmi
+requests
+logging
+configparser
