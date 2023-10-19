@@ -1,0 +1,2 @@
+# Duckddns_ipv6
+duckdns免费的ddns确实很香，然而使用起来不是很方便。 duckdns的windows官方软件只支持ipv4。linux中按官方的文档说明，很多时候获取的ipv6并不是公网ipv6，而且当ipv6更新失败时，它就会自动更新ipv4，然而我没有公网ipv4，这回导致域名无法使用。同时按官方的方式更新ip的网络请求很容易失败，因此自己写了一个支持周期性自动更新公网ipv6的项目，同时支持windows和linux，代码已开源。
