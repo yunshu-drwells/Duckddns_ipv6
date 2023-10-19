@@ -45,12 +45,12 @@ duckdns的windows官方软件只支持ipv4。linux中按官方的文档说明，
 
 可以直接Sign in with GitHub
 
-<p align="center"> <div align="middle"><img src="./resources//202310182120701.png" alt="202310182120701" width="720" height=""></div></p>
+<p align="center"> <div align="middle"><img src="./resources/202310182120701.png" alt="202310182120701" width="720" height=""></div></p>
 
 创建一个域名(总共有5个免费域名)
 
 
-<p align="center"> <div align="middle"><img src="./resources//202310182123501.png" alt="202310182123501" width="720" height=""></div></p>
+<p align="center"> <div align="middle"><img src="./resources/202310182123501.png" alt="202310182123501" width="720" height=""></div></p>
 
 记录domain和token
 
@@ -66,7 +66,7 @@ windows是通过WMI获取到公网ipv6；linux则使用 ifconfig 命令获取 WA
 
 下载windows-x86.zip，解压
 
-<p align="center"> <div align="middle"><img src="./resources//202310182038802.png" alt="202310182038802" width="720" height=""></div></p>
+<p align="center"> <div align="middle"><img src="./resources/202310182038802.png" alt="202310182038802" width="720" height=""></div></p>
 
 - 我提供的文件分别有以下：
 - - config.ini用于提供请求网络的地址，域名和token信息
@@ -104,7 +104,7 @@ token = <your token>
 
 可以每次开机之后手动执行，也可以将update duck.vbs的快捷方式放到C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp路径中，这样程序就会开机之后自动执行
 
-<p align="center"> <div align="middle"><img src="./resources//202310182059078.png" alt="202310182059078" width="360" height=""></div></p>
+<p align="center"> <div align="middle"><img src="./resources/202310182059078.png" alt="202310182059078" width="360" height=""></div></p>
 
 
 #### 日志
@@ -250,7 +250,7 @@ logrotate -f /etc/logrotate.conf
 
 #### 注意
 
-**duckdns有一个机制，请求的url不给定任何ip参数则默认更新本机的ipv4地址**如果发现自己的域名无法正常解析ipv6，则去duck.org将自己的域名ipv4给空，只留ipv6记录，然后更新就好了。
+**duckdns有一个机制，请求的url不给定任何ip参数或者更新ipv6失败时，duckdns服务商则会默认检索本机的ipv4地址并更新**如果发现自己的域名无法正常解析ipv6，则去duck.org将自己的域名ipv4给空，只留ipv6记录，然后更新就好了。
 
 
 # 自行编译
