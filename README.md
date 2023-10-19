@@ -74,6 +74,8 @@ windows是通过WMI获取到公网ipv6；linux则使用 ifconfig 命令获取 WA
 - - update_duck.bat用于清理日志文件和执行update_duck.ps1
 - - update_duck.ps1创建powershell任务定时执行update.exe更新ddns记录和记录日志
 
+**提供update duck.vbs去调用update_duck.bat批处理，是因为批处理的黑窗很丑，vbs则可以隐藏它执行的批处理程序的窗口**
+
 解压的文件夹随意放置到一个路径中
 
 #### 修改配置文件
