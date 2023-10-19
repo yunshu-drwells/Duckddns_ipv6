@@ -77,6 +77,6 @@ if __name__ == '__main__':
     在 Python 代码中，导入 urllib3 模块，并调用 urllib3.disable_warnings (urllib3.exceptions.InsecureRequestWarning)
     在 Python 代码中，导入 requests 模块，并调用 requests.packages.urllib3.disable_warnings (InsecureRequestWarning)
     """
-    print(response.text)
+    # print(response.text)
     logging.info("发起请求:%s", response.text)
     logging.info("同步ipv6结束!\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
