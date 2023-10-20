@@ -272,7 +272,7 @@ configparser
 
 ```
 pip install update pyinstaller
-pyinstaller --onefile --noconsole getip.py
+pyinstaller --onefile --noconsole getip_win.py --name update
 ```
 **已测试的环境Python==3.9.0**
 
