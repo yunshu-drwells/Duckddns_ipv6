@@ -34,6 +34,10 @@
 
 <!-- /code_chunk_output -->
 
+# 视频教程
+
+<a href="https://www.bilibili.com/video/BV1xN411x7dB/?share_source=copy_web&vd_source=f484d7a40d011dba21c5a56e3063c0f2">免费DDNS+ipv6</a>
+
 # 项目初衷
 
 duckdns免费的ddns确实很香，然而使用起来不是很方便。
