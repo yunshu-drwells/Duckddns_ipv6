@@ -66,6 +66,7 @@ if __name__ == '__main__':
 
     try:
         response = requests.get(url, params=params, verify=False)  # 使用verify=False忽略SSL验证，如果需要的话
+        # print(response.text)
         logging.info("发起请求:%s", response.text)
     except requests.exceptions.ConnectionError as e:
         print("error occur:", e)
@@ -78,5 +79,4 @@ if __name__ == '__main__':
     在 Python 代码中，导入 urllib3 模块，并调用 urllib3.disable_warnings (urllib3.exceptions.InsecureRequestWarning)
     在 Python 代码中，导入 requests 模块，并调用 requests.packages.urllib3.disable_warnings (InsecureRequestWarning)
     """
-    # print(response.text)
     logging.info("同步ipv6结束!\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
