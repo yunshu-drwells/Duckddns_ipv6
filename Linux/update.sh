@@ -8,8 +8,8 @@ echo $(date "+%Y-%m-%d %H:%M:%S") >> $ABSOLUTE_PATH/duck.log  # echo current tim
 # 输出获取的 IPv6 地址
 echo "$ipv6_address" >> $ABSOLUTE_PATH/duck.log 2>&1
 # use curl update ddns
-domains=ubuntu224
-token=da2f0fce-ed39-4fd9-bbfa-0c63b61adab9
+domains=xxxx
+token=da2f0fce-ed39-4fd9-bbfa-xxxxxxxxxxxx
 url="url=https://www.duckdns.org/update?domains=$domains&token=$token&ipv6=$ipv6_address"
 echo "$url" > ./url
 curl -k -K ./url >> $ABSOLUTE_PATH/duck.log

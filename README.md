@@ -28,7 +28,6 @@
   - [openwrt](#openwrt)
       - [修改update.sh](#修改updatesh)
       - [添加定时任务](#添加定时任务)
-      - [查看日志](#查看日志)
       - [设置日志自动清理](#设置日志自动清理)
       - [注意](#注意)
   - [Linux(ubuntu22.4为例)](#linuxubuntu224为例)
@@ -176,13 +175,23 @@ times: 82 - date: 10/18/2023 21:00:35
 
 ```
 #!/bin/sh
-ipv6_address=$(/duckdns/get_ipv6_re.sh)
-echo "$ipv6_address"
+# 获取脚本所在目录的相对路径
+SCRIPT_DIR=$(dirname "$0")
+# 获取脚本所在目录的绝对路径
+ABSOLUTE_PATH=$(cd "$SCRIPT_DIR" && pwd)
+ipv6_address=$($ABSOLUTE_PATH/get_ipv6_re.sh)
+echo $(date "+%Y-%m-%d %H:%M:%S") >> $ABSOLUTE_PATH/duck.log  # echo current time to log
 # 输出获取的 IPv6 地址
-# echo "$ipv6_address" >> /duckdns/updatelog.log 2>&1
-echo url="https://www.duckdns.org/update?domains=xxxx&token=xxxxxxxx-c9c5-4615-935e-12f9ea953b58&ipv6=$ipv6_address" | curl -k -o /duckdns/duck.log -K -
+echo "$ipv6_address" >> $ABSOLUTE_PATH/duck.log 2>&1
+# use curl update ddns
+domains=xxxx
+token=da2f0fce-ed39-4fd9-bbfa-xxxxxxxxxxxx
+url="url=https://www.duckdns.org/update?domains=$domains&token=$token&ipv6=$ipv6_address"
+echo "$url" > ./url
+curl -k -K ./url >> $ABSOLUTE_PATH/duck.log
+echo "\n" >> $ABSOLUTE_PATH/duck.log
 ```
-将最后一行url中的domains和token修改成自己的
+将最后一行domains和token修改成自己的
 
 #### 添加定时任务
 
@@ -190,7 +199,7 @@ echo url="https://www.duckdns.org/update?domains=xxxx&token=xxxxxxxx-c9c5-4615-9
 chmod 777 update.sh  # 改变脚本权限
 
 crontab -e  # 添加定时任务
-*/1 * * * * /duckdns/update.sh >> /duckdns/updatelog.log 2>&1  # 添加一行定时任务(每1分钟更新一次)
+*/1 * * * * /duckdns/update.sh >> /duckdns/duck.log 2>&1  # 添加一行定时任务(每1分钟更新一次)
 
 grep CRON /var/log/*  # 查看cron日志
 ```
@@ -199,7 +208,7 @@ grep CRON /var/log/*  # 查看cron日志
 
 **要是你的域名无法正常使用，请登录duckdns，查看ipv4记录是否为空**
 
-#### 查看日志
+<!-- #### 查看日志
 
 updatelog.log
 
@@ -214,7 +223,7 @@ updatelog.log
 100     2    0     2    0     0      0      0 --:--:--  0:00:04 --:--:--     0
 ```
 
-linux下的日志就简单粗暴得多
+linux下的日志就简单粗暴得多 -->
 
 
 #### 设置日志自动清理

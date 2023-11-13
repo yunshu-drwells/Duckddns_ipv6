@@ -1,6 +1,16 @@
 #!/bin/sh
-ipv6_address=$(./get_ipv6_re.sh)
-echo "$ipv6_address"
+# 获取脚本所在目录的相对路径
+SCRIPT_DIR=$(dirname "$0")
+# 获取脚本所在目录的绝对路径
+ABSOLUTE_PATH=$(cd "$SCRIPT_DIR" && pwd)
+ipv6_address=$($ABSOLUTE_PATH/get_ipv6_re.sh)
+echo $(date "+%Y-%m-%d %H:%M:%S") >> $ABSOLUTE_PATH/duck.log  # echo current time to log
 # 输出获取的 IPv6 地址
-# echo "$ipv6_address" >> /duckdns/updatelog_yunshu.log 2>&1
-echo url="https://www.duckdns.org/update?domains=xxxx&token=xxxxxxxx-c9c5-4615-935e-12f9ea953b56&ipv6=$ipv6_address" | curl -k -o ./duck.log -K -
+echo "$ipv6_address" >> $ABSOLUTE_PATH/duck.log 2>&1
+# use curl update ddns
+domains=xxxx
+token=da2f0fce-ed39-4fd9-bbfa-xxxxxxxxxxxx
+url="url=https://www.duckdns.org/update?domains=$domains&token=$token&ipv6=$ipv6_address"
+echo "$url" > ./url
+curl -k -K ./url >> $ABSOLUTE_PATH/duck.log
+echo "\n" >> $ABSOLUTE_PATH/duck.log
