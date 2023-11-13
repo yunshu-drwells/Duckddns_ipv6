@@ -330,7 +330,7 @@ sudo logrotate -f /etc/logrotate.conf  # 运行
 ```
 
 
-#### XDRP远程桌面
+#### XRDP远程桌面
 
 ###### 安装并开启xrdp
 
