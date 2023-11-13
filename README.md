@@ -13,6 +13,7 @@
 
 <!-- code_chunk_output -->
 
+- [视频教程](#视频教程)
 - [项目初衷](#项目初衷)
 - [注册一个账号](#注册一个账号)
 - [实现细则](#实现细则)
@@ -24,12 +25,20 @@
       - [日志](#日志)
           - [powershell.log如下：](#powershelllog如下)
           - [updateDuckDdns.log如下：](#updateduckddnslog如下)
-  - [linux(openwrt)](#linuxopenwrt)
+  - [openwrt](#openwrt)
       - [修改update.sh](#修改updatesh)
       - [添加定时任务](#添加定时任务)
       - [查看日志](#查看日志)
       - [设置日志自动清理](#设置日志自动清理)
       - [注意](#注意)
+  - [Linux(ubuntu22.4为例)](#linuxubuntu224为例)
+      - [添加定时任务](#添加定时任务-1)
+          - [安装并开启cron](#安装并开启cron)
+      - [添加日志维护](#添加日志维护)
+      - [XDRP远程桌面](#xdrp远程桌面)
+          - [安装并开启xrdp](#安装并开启xrdp)
+          - [确保Ubuntu防火墙允许XRDP流量](#确保ubuntu防火墙允许xrdp流量)
+          - [需要在系统设置中打开sharing](#需要在系统设置中打开sharing)
 - [自行编译](#自行编译)
 
 <!-- /code_chunk_output -->
@@ -159,7 +168,7 @@ times: 82 - date: 10/18/2023 21:00:35
 
 信息更加详细，记录了：获取到的公网ipv6地址，配置文件读取状态，发起请求的执行结果等
 
-## linux(openwrt)
+## openwrt
 
 将**get_ipv6_re.sh**和**update.sh**放到同一个路径中，然后借助crontab定时任务和logrotate日志管理工具实现openwrt只要开机就会自动执行的效果
 
@@ -259,6 +268,119 @@ logrotate -f /etc/logrotate.conf
 **duckdns有一个机制，请求的url不给定任何ip参数或者更新ipv6失败时，duckdns服务商则会默认检索本机的ipv4地址并更新**如果发现自己的域名无法正常解析ipv6，则去duck.org将自己的域名ipv4给空，只留ipv6记录，然后更新就好了。
 
 
+
+
+
+## Linux(ubuntu22.4为例)
+
+创建一个路径将get_ipv6_re.sh和update.sh放入，修改update.sh中的domains和token
+
+#### 添加定时任务
+
+###### 安装并开启cron
+
+
+
+首次使用crontab会提示选择一个默认的文本编辑器，例如nano、vim、emacs
+
+```
+sudo apt-get install cron  # install
+sudo systemctl start cron.service  # start(systemd)
+sudo service cron start  # start(int)
+sudo systemctl status cron
+export EDITOR=vi
+
+crontab -e  # 添加定时任务
+*/1 * * * * /home/yunshu/duckdns/update.sh >> /home/yunshu/duckdns/duck.log 2>&1
+
+crontab -l  # 查看定时任务
+grep CRON /var/log/*  # 查看cron日志
+```
+
+#### 添加日志维护
+
+
+```
+sudo chmod 644 /etc/logrotate.conf
+sudo logrotate -f /etc/logrotate.conf
+vi /etc/logrotate.conf
+
+# 添加：
+/home/duckdns/duck.log {
+size 10
+rotate 1
+copytruncate
+compress
+delaycompress
+missingok
+notifempty
+}
+
+sudo logrotate -f /etc/logrotate.conf  # 运行
+```
+
+
+#### XDRP远程桌面
+
+###### 安装并开启xrdp
+
+```
+sudo apt-get install xrdp
+sudo systemctl status xrdp  # status: active 
+sudo systemctl enable xrdp  # start with system
+```
+
+
+还可以使用vino
+
+```
+sudo apt-get install vino
+sudo apt install dconf-editor  # edit config
+desktop/gnome/
+```
+
+###### 确保Ubuntu防火墙允许XRDP流量
+
+需要配置防火墙规则。以下是如何使用`ufw`（Ubuntu防火墙）进行配置的步骤：
+
+1. 如果尚未安装`ufw`，可以使用以下命令安装：
+
+    ```bash
+    sudo apt update
+    sudo apt install ufw
+    ```
+
+2. 启用`ufw`：
+
+    ```bash
+    sudo ufw enable
+    ```
+
+3. 允许XRDP流量（默认情况下，XRDP使用端口3389）。运行以下命令：
+
+    ```bash
+    sudo ufw allow 3389
+    ```
+
+    如果您已更改XRDP的端口，请将上述命令中的3389替换为所使用的端口。
+
+4. 验证已添加规则：
+
+    ```bash
+    sudo ufw status
+    ```
+
+    确保防火墙规则中包含允许XRDP流量的端口。
+
+###### 需要在系统设置中打开sharing
+
+
+<p align="center"> <div align="middle"><img src="./resources/Snipaste_2023-11-13_13-04-52.jpg" alt="202310182059078" width="360" height=""></div></p>
+
+
+在Ubuntu中右上角电源(power off/Log out)->注销(Log out)然后就可以通过远程桌面连接ubuntu了
+
+
 # 自行编译
 
 **requirtment.txt**
@@ -285,3 +407,5 @@ pyinstaller --onefile --noconsole getip_win.py --name update
 **Linux**
 
 无需编译，提供了sh脚本
+
+
