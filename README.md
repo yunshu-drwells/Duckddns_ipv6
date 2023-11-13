@@ -44,7 +44,8 @@
 
 # 视频教程
 
-<a href="https://www.bilibili.com/video/BV1xN411x7dB/?share_source=copy_web&vd_source=f484d7a40d011dba21c5a56e3063c0f2">免费DDNS+ipv6</a>
+<a href="https://www.bilibili.com/video/BV1xN411x7dB/?share_source=copy_web&vd_source=f484d7a40d011dba21c5a56e3063c0f2">免费DDNS+ipv6（Windows+OpenWrt）</a>
+<a href="https://www.bilibili.com/video/BV1BG411Q79C/?vd_source=9f49c8c1c783b21878083927fcee550e">免费DDNS+IPv6之适用原生Linux工具——使用Linux远程桌面</a>
 
 # 项目初衷
 
