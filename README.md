@@ -290,6 +290,7 @@ sudo service cron start  # start(int)
 sudo systemctl status cron
 export EDITOR=vi
 
+sudo update-alternatives --config editor  # 修改crontab默认编辑器
 crontab -e  # 添加定时任务
 */1 * * * * /home/yunshu/duckdns/update.sh >> /home/yunshu/duckdns/duck.log 2>&1
 
