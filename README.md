@@ -34,11 +34,12 @@
       - [添加定时任务](#添加定时任务-1)
           - [安装并开启cron](#安装并开启cron)
       - [添加日志维护](#添加日志维护)
-      - [XDRP远程桌面](#xdrp远程桌面)
+      - [XRDP远程桌面](#xrdp远程桌面)
           - [安装并开启xrdp](#安装并开启xrdp)
           - [确保Ubuntu防火墙允许XRDP流量](#确保ubuntu防火墙允许xrdp流量)
           - [需要在系统设置中打开sharing](#需要在系统设置中打开sharing)
 - [自行编译](#自行编译)
+- [捐献](#捐献)
 
 <!-- /code_chunk_output -->
 
@@ -421,3 +422,8 @@ pyinstaller --onefile --noconsole getip_win.py --name update
 无需编译，提供了sh脚本
 
 
+# 捐献
+
+<p align="center"> <div align="middle"><img src="https://github.com/yunshu-drwells/Notes/blob/main/donate%20alipay.jpg" alt="202402191238496" width="720" height=""></div></p>
+
+<p align="center"> <div align="middle"><img src="https://github.com/yunshu-drwells/Notes/blob/main/donate%20wechat.jpg" alt="202402191238496" width="720" height=""></div></p>
