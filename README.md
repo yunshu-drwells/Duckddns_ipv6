@@ -424,6 +424,11 @@ pyinstaller --onefile --noconsole getip_win.py --name update
 
 # 捐献
 
-<p align="center"> <div align="middle"><img src="https://github.com/yunshu-drwells/Notes/blob/main/donate%20alipay.jpg" alt="202402191238496" width="720" height=""></div></p>
+<p align="center"> <div align="middle"><img src="https://github.com/yunshu-drwells/Notes/blob/main/donate.png" alt="202402191238496" width="720" height=""></div></p>
 
-<p align="center"> <div align="middle"><img src="https://github.com/yunshu-drwells/Notes/blob/main/donate%20wechat.jpg" alt="202402191238496" width="720" height=""></div></p>
+<!-- <p align="center"> <div align="middle"><img src="https://github.com/yunshu-drwells/Notes/blob/main/donate%20alipay.jpg" alt="202402191238496" width="720" height=""></div></p>
+
+<p align="center"> <div align="middle"><img src="https://github.com/yunshu-drwells/Notes/blob/main/donate%20wechat.jpg" alt="202402191238496" width="720" height=""></div></p> 
+
+<a href="https://www.buymeacoffee.com/wic8pmtmys" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Piza" height="36" width="120"></a>
+-->
